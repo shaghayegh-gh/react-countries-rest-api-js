@@ -1,5 +1,5 @@
 import { api } from "../setup/api";
-import { getRequest } from "../setup/axiosConfig";
+import { getRequest } from "../setup/axios-config";
 
 export const getCountries = () =>
   getRequest(api.countries).then((response) => {
