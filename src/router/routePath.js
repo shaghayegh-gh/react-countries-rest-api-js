@@ -1,3 +1,3 @@
-export const routePatch = {
+export const patch = {
 	home: '/',
 };

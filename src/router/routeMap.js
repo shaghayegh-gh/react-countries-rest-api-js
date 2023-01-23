@@ -1,10 +1,10 @@
-import { routePatch } from './routePath';
+import { patch } from './routePath';
 import Home from '../pages/home';
 import NotFound from '../pages/not-found';
 
 export const routeMap = [
 	{
-		path: routePatch.home,
+		path: patch.home,
 		element: <Home />,
 		exact: true,
 	},
