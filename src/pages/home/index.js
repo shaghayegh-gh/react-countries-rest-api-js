@@ -6,8 +6,10 @@ import Countries from "../../components/countries";
 const Home = () => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const countriesList = useCallback(() =>
+  const getAllCountries = useCallback(
+    () =>
       getCountries().then((data) => {
         setLoading(false);
         setCountries(data);
@@ -16,13 +18,18 @@ const Home = () => {
   );
 
   useEffect(() => {
-    countriesList()
-  }, [countriesList]);
+    getAllCountries();
+  }, [getAllCountries]);
 
   return (
     <div className="md:container md:mx-auto px-4">
-        <Filters  setCountries={setCountries} setLoading={setLoading}/>
-      <Countries countries={countries} loading={loading} />
+      <Filters
+        getAllCountries={getAllCountries}
+        setCountries={setCountries}
+        setLoading={setLoading}
+        setError={setError}
+      />
+      <Countries countries={countries} loading={loading} error={error} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ module.exports = {
     "./src/*.{js,jsx,ts,tsx}",
     "./public/index.html"
   ],
-  darkMode: "media", // or 'media' or 'class'
+  darkMode: "class",
   theme: {
     extend: {},
   },
