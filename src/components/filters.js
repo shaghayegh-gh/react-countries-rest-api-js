@@ -1,17 +1,15 @@
 import { useState } from "react";
-import Select from "react-select";
 import {
   getCountriesByRegion,
   getCountryByName,
 } from "../services/countries-service";
-import ls from "local-storage";
 
-const Filters = ({ setCountries, setLoading }) => {
-  let mod = ls.get("darkMod");
-
-  const [regionFilter, setRegionFilter] = useState(null);
+const Filters = ({ setCountries, setLoading, getAllCountries, setError }) => {
+  const [regionFilter, setRegionFilter] = useState("");
   const [search, setSearch] = useState("");
+  
   const options = [
+    { value: "", label: "Select continent" },
     { value: "Africa", label: "Africa" },
     { value: "Americas", label: "Americas" },
     { value: "Asia", label: "Asia" },
@@ -19,40 +17,41 @@ const Filters = ({ setCountries, setLoading }) => {
     { value: "Oceania", label: "Oceania" },
   ];
 
-  const customStyles = {
-    control: (provided) => ({
-      ...provided,
-      width: 200,
-      background: mod ? "#4b5563" : "#ffff",
-      color: mod ? "#ffff" : "#333",
-      border: "none",
-    }),
-    menu: (provided) => ({
-      ...provided,
-      background: mod ? "#4b5563" : "#ffff",
-      color: mod ? "#ffff" : "#333",
-    }),
-  };
-
-  const handleFilterChange = (selectedOption) => {
-    setRegionFilter(selectedOption);
+  const handleFilterChange = (selected) => {
+    let value = selected.target.value;
+    setSearch("");
+    setRegionFilter(value);
     setLoading(true);
-    getCountriesByRegion(selectedOption.label).then((data) => {
-      setLoading(false);
-      setCountries(data);
-    });
+    if (value) {
+      getCountriesByRegion(value)
+        .then((data) => {
+          setCountries(data);
+          setError(false)
+        })
+        .catch(() => setError(true))
+        .finally(() => setLoading(false));
+      return;
+    }
+    getAllCountries();
   };
 
   const handleSearch = (value) => {
+    setRegionFilter("");
     setSearch(value);
     setLoading(true);
-    getCountryByName(value).then((data) => {
-      if (data) {
-        setCountries(data);
-        setLoading(true);
-      }
-      setLoading(false);
-    });
+    if (value) {
+      getCountryByName(value)
+        .then((data) => {
+          if (data) {
+            setCountries(data);
+            setError(false)
+          }
+        })
+        .catch(() => setError(true))
+        .finally(() => setLoading(false));
+      return;
+    }
+    getAllCountries();
   };
 
   return (
@@ -64,14 +63,33 @@ const Filters = ({ setCountries, setLoading }) => {
         type="text"
         placeholder="search for a country"
       />
-
-        <Select
-          value={regionFilter}
-          onChange={(e) => handleFilterChange(e)}
-          options={options}
-          styles={customStyles}
-        />
-   
+      <div className="flex justify-center">
+        <div className="mb-3 xl:w-96">
+          <select
+            className="form-select appearance-none
+                block
+                w-full
+                px-3
+                py-1.5
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:focus:border-blue-600 focus:outline-none
+                dark:bg-gray-600 
+                border-gray-600"
+            aria-label="Default select example"
+            value={regionFilter}
+            onChange={(e) => handleFilterChange(e)}
+          >
+            {options.map((op, i) => (
+              <option key={i} value={op.value}>
+                {op.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
     </div>
   );
 };
