@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { patch } from "../router/routePath";
 import Card from "./card";
 
 const Countries = ({ countries, loading }) => {
@@ -10,7 +12,9 @@ const Countries = ({ countries, loading }) => {
         <div className="grid md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 gap-8">
           {countries &&
             countries.map((country, i) => (
-                 <Card key={i} country={country} /> 
+              <Link key={i} to={patch.country(country.name)}>
+                <Card country={country} />
+              </Link>
             ))}
         </div>
       )}
