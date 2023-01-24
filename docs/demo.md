@@ -1,4 +1,4 @@
-# How it works?
+# How it works
 
 ### Search by name:
 

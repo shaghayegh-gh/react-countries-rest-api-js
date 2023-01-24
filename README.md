@@ -9,8 +9,10 @@ The project uses a public REST API at this address: https://restcountries.com/v2
 
 ![All countries list](./docs/img/countries.png)
 
+For more images click [here](./docs/demo.md)
 ## Prerequisites
-- Instal NodeJs and NPM
+- Install [NodeJs](https://nodejs.org/en/download/)
+- Install [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Getting started
 Install all the packages and run the project using the below commands:
@@ -23,13 +25,12 @@ npm install
 npm start
 ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The last command runs the app in the development mode. Now, open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### Dependencies added
 - `tailwindcss`
 - `axios`
 - `local-storage`
 
-How is it work [here](./docs/demo.md)
+
 
