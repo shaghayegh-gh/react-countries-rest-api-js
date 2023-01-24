@@ -57,14 +57,13 @@ const Filters = ({ setCountries, setLoading, getAllCountries, setError }) => {
   return (
     <div className="flex justify-between  mb-5">
       <input
-        className="p-2 dark:bg-gray-600 rounded focus:outline-none focus:ring focus:border-blue-300 "
+        className="p-2 xl:w-96 dark:bg-gray-600 rounded focus:outline-none focus:ring focus:border-blue-300 "
         value={search}
         onChange={(e) => handleSearch(e.target.value)}
         type="text"
         placeholder="search for a country"
       />
-      <div className="flex justify-center">
-        <div className="mb-3 xl:w-96">
+
           <select
             className="form-select appearance-none
                 block
@@ -74,6 +73,7 @@ const Filters = ({ setCountries, setLoading, getAllCountries, setError }) => {
                 rounded
                 transition
                 ease-in-out
+                xl:w-96
                 m-0
                 focus:focus:border-blue-600 focus:outline-none
                 dark:bg-gray-600 
@@ -88,8 +88,8 @@ const Filters = ({ setCountries, setLoading, getAllCountries, setError }) => {
               </option>
             ))}
           </select>
-        </div>
-      </div>
+            
+    
     </div>
   );
 };
