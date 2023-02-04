@@ -10,6 +10,8 @@ The project uses a public REST API at this address: https://restcountries.com/v2
 ![All countries list](./docs/img/countries.png)
 
 For more images click [here](./docs/demo.md)
+
+TypeScript version: [github.com/shaghayegh-gh/react-countries-rest-api-ts](https://github.com/shaghayegh-gh/react-countries-rest-api-ts)
 ## Prerequisites
 - Install [NodeJs](https://nodejs.org/en/download/)
 - Install [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
